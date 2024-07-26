@@ -1,0 +1,46 @@
+<!-- Nombre del archivo: index.html -->
+<!-- Función del archivo: Estructura HTML del inicio de sesión -->
+<!-- Autor: Santiago De la mora Núñez -->
+<!-- Fecha de creación del archivo: 3/7/2024 -->
+
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles.css">
+        <title>Login</title>
+    </head>
+    <body class="body">
+        <!-- Contenedor principal -->
+        <div class="container">
+            <div class="sign-up-container">
+                <h1 class="title">Crear cuenta</h1>
+                <form id="sign-up-form" class="sign-up-form" autocomplete="off">
+                    <input type="text" name="username_1" id="username-input-1" class="username-input" minlength="1" maxlength="30" placeholder="Ingrese un nombre de usuario" required>
+                    <input type="email" name="email_1" id="email-input-1" class="email-input" minlength="1" maxlength="50" placeholder="Ingrese un correo electrónico" required>
+                    <input type="password" name="password_1" id="password-input-1" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese una contraseña" required>
+                    <input type="submit" name="submit_1" id="btn-submit-1" class="btn-submit" value="Crear cuenta">
+                </form>
+                <div id="seguridad-contrasena" class="seguridad-contrasena">
+                    <ul class="ul">
+                        <li class="li"></li>
+                        <li class="li"></li>
+                        <li class="li"></li>
+                        <li class="li"></li>
+                        <li class="li"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sign-in-container">
+                <h1 class="title">Iniciar sesión</h1>
+                <form id="sign-in-form" class="sign-in-form" autocomplete="off">
+                    <input type="email" name="email_2" id="email-input-2" class="email-input" minlegth="1"  maxlength="50" placeholder="Ingrese su correo electrónico" required>
+                    <input type="password" name="password_2" id="password-input-2" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese su contraseña" required>
+                    <input type="submit" name="submit_2" id="btn-submit-2" class="btn-submit" value="Iniciar sesión">
+                </form>
+            </div>
+        </div>
+        <script src="./script-client.js"></script>
+    </body>
+</html>
