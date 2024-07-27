@@ -2,14 +2,14 @@
     Función del archivo: Lógica backend del registro de cuentas y el inicio de sesión
     Nombre del archivo: script-server.js
     Autor: Santiago Nicolás De la mora Núñez
-    Fecha de creación del archivo; 3/7/2024
+    Fecha de creación del archivo: 3/7/2024
 */
 
 // Importación de los módulos necesarios
 import express from 'express';   // Framework para crear aplicaciones web y API
 import bodyParser from 'body-parser';   // Middleware para analizar cuerpos de solicitud entrantes en un servidor Express
 import cors from 'cors';   // Middleware para permitir solicitudes de recursos cruzados
-import mysql from 'mysql';   // Cliente de MySQL para Node.js
+import database from './connection';   // Conexión a la abse de datos importada desde el archivo en el qeu se crea la conexión a la base de datos
 
 // Crea la apliación Express
 const expressApp = express();
@@ -22,14 +22,6 @@ expressApp.use(cors());
 
 // Permite que el servidor entienda las solicitudes que tienen cuerpos en formato JSON
 expressApp.use(bodyParser.json());
-
-// Configura la conexión a la base de datos MySQL
-const database = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'db_demo_santiago'
-});
 
 // Método para iniciar la conexión a la base de datos. Si hay algún error, se imprimie un mensaje de error en la consola y se detiene la ejecución
 database.connect((error) => {
