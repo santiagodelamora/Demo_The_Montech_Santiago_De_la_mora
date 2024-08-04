@@ -1,38 +1,18 @@
 /*
     Función del archivo: Lógica backend del registro de cuentas y el inicio de sesión
-    Nombre del archivo: script-server.js
+    Nombre del archivo: auth.js
     Autor: Santiago Nicolás De la mora Núñez
-    Fecha de creación del archivo: 3/7/2024
+    Fecha de creación del archivo: 3/8/2024
 */
 
-// Importación de los módulos necesarios
-import express from 'express';   // Framework para crear aplicaciones web y API
-import bodyParser from 'body-parser';   // Middleware para analizar cuerpos de solicitud entrantes en un servidor Express
-import cors from 'cors';   // Middleware para permitir solicitudes de recursos cruzados
-import database from './connection';   // Conexión a la abse de datos importada desde el archivo en el qeu se crea la conexión a la base de datos
+import express from 'express';
+import database from '../models/connection.js';
 
-// Crea la apliación Express
-const expressApp = express();
+// Crea el enrrutador Express
+const router = express.Router();
 
-// Se define un puerto en el que el servidor escuchará las solicitudes
-const port = 3000;
-
-// Permite que las solicitudes de diferentes dominios sean aceptadas por el servidor
-expressApp.use(cors());
-
-// Permite que el servidor entienda las solicitudes que tienen cuerpos en formato JSON
-expressApp.use(bodyParser.json());
-
-// Método para iniciar la conexión a la base de datos. Si hay algún error, se imprimie un mensaje de error en la consola y se detiene la ejecución
-database.connect((error) => {
-    if (error) {
-        console.error("Error al conectar a la base de datos:", error);
-    }
-    console.log("Conectado a la base de datos MySQL.");
-});
-
-// Define una ruta para manejar las solicitudes POST en '/submit'
-expressApp.post('/login-demo', (request, response) => {
+// Define una ruta para manejar las solicitudes POST en '/login-demo'
+router.post('/', (request, response) => {
     // Inicialización de variables
     let receivedData = null;
     let sql = null;
@@ -129,7 +109,4 @@ expressApp.post('/login-demo', (request, response) => {
     }
 });
 
-// Inicia el servidor
-expressApp.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
-});
+export default router;

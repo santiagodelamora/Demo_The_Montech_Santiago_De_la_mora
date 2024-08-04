@@ -9,9 +9,12 @@
 import mysql from 'mysql';
 
 // Configura la conexión a la base de datos MySQL
-export default database = mysql.createConnection({
+const database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'db_demo_santiago'
 });
+
+// Exporta la conexión a la base de datos mediente ES6 Modules
+export default database;

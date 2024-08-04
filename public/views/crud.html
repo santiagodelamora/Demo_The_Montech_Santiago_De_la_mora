@@ -4,7 +4,7 @@
 <!-- Fecha de creación del archivo: 26/7/2024 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,37 +18,48 @@
                 <thead class="thead">
                     <tr class="tr">
                         <th class="th">ID</th>
-                        <td class="td">Nombre de usuario</td>
-                        <td class="td">Correo electrónico</td>
-                        <td class="td">Contraseña</td>
-                        <td class="td">Creada el</td>
-                        <td class="td">Acciones</td>
+                        <th class="th">Nombre de usuario</th>
+                        <th class="th">Correo electrónico</th>
+                        <th class="th">Contraseña</th>
+                        <th class="th">Creada el</th>
+                        <th class="th">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="tbody">
                     <!-- Aquí se mostrarán los registros de la base de datos -->
                 </tbody>
+                <tfoot class="tfoot">
+                    <tr class="tr">
+                        <td class="td" colspan="6"><button class="button" onclick="addRecord('sign up')">Crear nuevo registro</button></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
+        <br>
         <div class="contenedor-tabla-registros-inises">
             <h2 class="titulo-tabla">Registro de inicios de sesión</h2>
             <table id="tabla-registros-inises" class="table" border="1">
                 <thead class="thead">
                     <tr class="tr">
                         <th class="th">ID</th>
-                        <td class="td">Correo electrónico</td>
-                        <td class="td">Contraseña</td>
-                        <td class="td">Accedió el</td>
-                        <td class="td">Acciones</td>
+                        <th class="th">Correo electrónico</th>
+                        <th class="th">Contraseña</th>
+                        <th class="th">Accedió el</th>
+                        <th class="th">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="tbody">
                     <!-- Aquí se mostrarán los registros de la base de datos -->
                 </tbody>
+                <tfoot class="tfoot">
+                    <tr class="tr">
+                        <td class="td" colspan="5"><button class="button" onclick="addRecord('sign in')">Crear nuevo registro</button></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </body>
 
     <!-- Conexión con el archivo de JavaScript del lado del cliente que maneja la lógica de recepción de datos de la base de datos desde el servidor -->
-     <script src="script-client-crud.js"></script>
+    <script src="../js/script-client-crud.js"></script>
 </html>

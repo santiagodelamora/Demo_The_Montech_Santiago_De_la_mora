@@ -1,0 +1,9 @@
+# Paquetes de Node.js
+package-lock.json
+package.json
+
+# Carpeta con las dependecias (librerías) de Node.js
+node_modules/
+
+# Directorio (carpeta) que contiene el archivo SQL con la estructura de la base de datos
+models/db/

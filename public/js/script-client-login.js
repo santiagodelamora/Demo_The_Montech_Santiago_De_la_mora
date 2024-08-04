@@ -1,8 +1,8 @@
 /*
     Función del archivo: Lógica frontend del inicio de sesión
-    Nombre del archivo: script-client.js
+    Nombre del archivo: script-client-login.js
     Autor: Santiago Nicolás De la mora Núñez
-    Fecha de creación del archivo; 3/7/2024
+    Fecha de creación del archivo: 3/7/2024
 */
 
 // Obtiene acceso a los elementos que corresponden alos formularios
@@ -27,7 +27,7 @@ signUpForm.addEventListener('submit', (e) => {
 
     // Hace uso de "fetch" para enviar los datos
     // A fetch se le pasan dos parámetros, la ruta del archivo al que se enviarán los datos y un objeto JSON donde se envían los datos
-    fetch('http://localhost:3000/login-demo', {
+    fetch('http://localhost:3000/login', {
         // Se especifica el método mediante el cuál se hace la solicitud
         method: 'POST',
 
@@ -86,7 +86,7 @@ signInForm.addEventListener('submit', (e) => {
 
     // Hace uso de "fetch" para enviar los datos
     // A fetch se le pasan dos parámetros, la ruta del archivo al que se enviarán los datos y un objeto JSON donde se envían los datos
-    fetch('http://localhost:3000/login-demo', {
+    fetch('http://localhost:3000/login', {
         // Se especifica el método mediante el cuál se hace la solicitud
         method: 'POST',
 
