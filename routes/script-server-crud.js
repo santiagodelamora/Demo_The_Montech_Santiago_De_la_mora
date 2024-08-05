@@ -11,6 +11,7 @@ import database from '../models/connection.js';
 // Crea el enrrutador Express
 const router = express.Router();
 
+/******* CREATE *******/
 // Crear
 router.post('/', (request, response) => {
     const formType = request.body.formType;
@@ -35,7 +36,7 @@ router.post('/', (request, response) => {
                     response.status(500).send(JSON.stringify({message: "Error al crear el registro."}));
                     return;
                 }
-                response.status(201).send(JSON.stringify({message: `Registro creado con ID ${result.id}`}));
+                response.status(201).send(JSON.stringify({message: "Registro creado exitosamente."}));
             });
         break;
 
@@ -49,15 +50,19 @@ router.post('/', (request, response) => {
                     response.status(500).send(JSON.stringify({message: "Error al crear el registro. "}));
                     return;
                 }
-                response.status(201).send(JSON.stringify({message: `Registro creado con ID ${result.id}`}));
+                response.status(201).send(JSON.stringify({message: "Registro creado exitosamente."}));
             });
         break;
     }
 });
 
+/******* READ *******/
 // Leer
 router.get('/', (request, response) => {
-    const sql = `SELECT * FROM sign_up; SELECT * FROM sign_in;`;
+    const sql = `
+        SELECT * FROM sign_up;
+        SELECT * FROM sign_in;
+    `;
 
     database.query(sql, (error, results) => {
         if (error)
@@ -66,10 +71,11 @@ router.get('/', (request, response) => {
             response.status(500).send(JSON.stringify({message: "Error al leer los registros. Motivo: " + error}));
             return;
         }
-        response.json(results);
+        response.status(200).send(JSON.stringify(results));
     });
 });
 
+/******* UPDATE *******/
 // Actualizar
 router.put('/', (request, response) => {
     const formType = request.body.formType;
@@ -115,13 +121,17 @@ router.put('/', (request, response) => {
     }
 });
 
+/******* DELETE *******/
 // Eliminar
 router.delete('/', (request, response) => {
     const id = request.body.id;
 
-    const sql = `DELETE FROM sign_up WHERE id = ?`;
+    const sql = `
+        DELETE FROM sign_up WHERE id = ?;
+        DELETE FROM sign_in WHERE id = ?;
+    `;
 
-    database.query(sql, [id], (error, result) => {
+    database.query(sql, [id, id], (error, result) => {
         if (error)
         {
             console.error("Error al eliminar el registro.", error);

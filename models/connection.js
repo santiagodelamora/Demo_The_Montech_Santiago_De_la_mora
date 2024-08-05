@@ -13,7 +13,8 @@ const database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'db_demo_santiago'
+    database: 'db_demo_santiago',
+    multipleStatements: true
 });
 
 // Exporta la conexión a la base de datos mediente ES6 Modules

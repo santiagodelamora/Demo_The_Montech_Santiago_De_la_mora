@@ -44,7 +44,7 @@ function addRecord(formType)
             alert("No puede dejar el campo vacío.");
             invalid = true;
         }
-        else if ((/^[A-Za-z0-9._%+-]{1, 50}@[A-Za-z.-]{3, 10}\.[A-Z|a-z]{2, 10}$/).test(email))
+        else if (!((/^[A-Za-z0-9._%+-]{1,50}@[A-Za-z.-]{3,10}\.[A-Za-z]{2,10}$/).test(email)))
         {
             alert("Formato de correo electrónico inválido. Formato sugerido: myEmail123@email.com");
             invalid = true;
@@ -91,25 +91,24 @@ function addRecord(formType)
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        alert(data.message);
         loadRecords();
     })
     .catch(error => console.error("El error es:", error));
 }
 
 /******* READ *******/
-// Función para mostrar los registros de la tabla de creación de cuentas
+// Función que muestra los registros de la tabla de creación de cuentas
 function loadRecords()
 {
     fetch('http://localhost:3000/crud')
         .then(response => response.json())
         .then(data => {
-            // Depuración de la información que llega desde el servidor
-            console.log(data);
-
             // Mostrar los registros de la primera tabla
             const tbody1 = document.getElementById('tabla-registros-cuentas').getElementsByTagName('tbody')[0];
             tbody1.innerHTML = '';
-            data.forEach(record => {
+    
+            data[0].forEach(record => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="td">${record.id}</td>
@@ -118,7 +117,7 @@ function loadRecords()
                     <td class="td">${record.password}</td>
                     <td class="td">${record.added_at}</td>
                     <td class="td">
-                        <button class="btn-accion" onclick="updateRecords(${record.id}, 'sign up')">Editar</button>
+                        <button class="btn-accion" onclick="updateRecords(this, ${record.id}, 'sign up')">Editar</button>
                         <button class="btn-accion" onclick="deleteRecord(${record.id})">Eliminar</button>
                     </td>
                 `;
@@ -128,7 +127,8 @@ function loadRecords()
             // Mostrar los registros de la segunda tabla
             const tbody2 = document.getElementById('tabla-registros-inises').getElementsByTagName('tbody')[0];
             tbody2.innerHTML = '';
-            data.forEach(record => {
+
+            data[1].forEach(record => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="td">${record.id}</td>
@@ -136,7 +136,7 @@ function loadRecords()
                     <td class="td">${record.password}</td>
                     <td class="td">${record.added_at}</td>
                     <td class="td">
-                        <button class="btn-accion" onclick="updateRecords(${record.id}, 'sign in')">Editar</button>
+                        <button class="btn-accion" onclick="updateRecords(this, ${record.id}, 'sign in')">Editar</button>
                         <button class="btn-accion" onclick="deleteRecord(${record.id})">Eliminar</button>
                     </td>
                 `;
@@ -148,7 +148,7 @@ function loadRecords()
 
 /******* UPDATE *******/
 // Función para acutualizar los registros de las dos tablas de la base de datos
-function updateRecords(id, formType)
+function updateRecords(selectedButton, id, formType)
 {
     let invalid = false;
     let newEmail = '';
@@ -159,8 +159,13 @@ function updateRecords(id, formType)
     {
         do
         {
-            newUsername = prompt("Ingrese el nuevo nombre de usuario.");
-            if (newUsername === null || newUsername === "")
+            newUsername = prompt("Ingrese el nuevo nombre de usuario.", selectedButton.parentElement.parentElement.children[1].textContent);
+            if (newUsername === null)
+            {
+                newUsername = selectedButton.parentElement.parentElement.children[1].textContent;
+                invalid = false;
+            }
+            else if (newUsername === "")
             {
                 alert("No puede dejar el campo vacío.");
                 invalid = true;
@@ -179,13 +184,19 @@ function updateRecords(id, formType)
 
     do
     {
-        newEmail = prompt("Ingrese el nuevo correo electrónico.");
-        if (newEmail === null || newEmail === "")
+        let columnNumber = (formType === 'sign up')? 2 : 1;
+        newEmail = prompt("Ingrese el nuevo correo electrónico.", selectedButton.parentElement.parentElement.children[columnNumber].textContent);
+        if (newEmail === null)
+        {
+            newEmail = selectedButton.parentElement.parentElement.children[columnNumber].textContent;
+            invalid = false;
+        }
+        else if (newEmail === "")
         {
             alert("No puede dejar el campo vacío.");
             invalid = true;
         }
-        else if ((/^[A-Za-z0-9._%+-]{1, 50}@[A-Za-z.-]{3, 10}\.[A-Z|a-z]{2, 10}$/).test(newEmail))
+        else if (!((/^[A-Za-z0-9._%+-]{1,50}@[A-Za-z.-]{3,10}\.[A-Za-z]{2,10}$/).test(newEmail)))
         {
             alert("Formato de correo electrónico inválido. Formato sugerido: myEmail123@email.com");
             invalid = true;
@@ -198,8 +209,14 @@ function updateRecords(id, formType)
 
     do
     {
-        newPassword = prompt("Ingrese la nueva contraseña.");
-        if (newPassword === null || newPassword === "")
+        let columnNumber = (formType === 'sign up')? 3 : 2;
+        newPassword = prompt("Ingrese la nueva contraseña.", selectedButton.parentElement.parentElement.children[columnNumber].textContent);
+        if (newPassword === null)
+        {
+            newPassword = selectedButton.parentElement.parentElement.children[columnNumber].textContent;
+            invalid = false;
+        }
+        else if (newPassword === "")
         {
             alert("No puede dejar el campo vacío.");
             invalid = true;
@@ -233,6 +250,7 @@ function updateRecords(id, formType)
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        alert(data.message);
         loadRecords();
     })
     .catch(error => console.error("El error es:", error));
@@ -242,7 +260,7 @@ function updateRecords(id, formType)
 // Función para eliminar un registro en alguna de las dos tablas de la base de datos
 function deleteRecord(id)
 {
-    let confirmElimination = confirm("¿Desea eliminar este record?");
+    let confirmElimination = confirm("¿Desea eliminar este registro?");
 
     if (confirmElimination)   // Esto es igual a que "confirmElimination === true"
     {
@@ -254,6 +272,7 @@ function deleteRecord(id)
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            alert(data.message);
             loadRecords();
         })
         .catch(error => console.error("El error es:", error));
