@@ -103,8 +103,12 @@ function loadRecords()
     fetch('http://localhost:3000/crud')
         .then(response => response.json())
         .then(data => {
-            const tbody = document.getElementById('tabla-registros-cuentas').getElementsByTagName('tbody')[0];
-            tbody.innerHTML = '';
+            // Depuración de la información que llega desde el servidor
+            console.log(data);
+
+            // Mostrar los registros de la primera tabla
+            const tbody1 = document.getElementById('tabla-registros-cuentas').getElementsByTagName('tbody')[0];
+            tbody1.innerHTML = '';
             data.forEach(record => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -118,16 +122,12 @@ function loadRecords()
                         <button class="btn-accion" onclick="deleteRecord(${record.id})">Eliminar</button>
                     </td>
                 `;
-                tbody.appendChild(row);
+                tbody1.appendChild(row);
             });
-        })
-        .catch(error => console.error("Error:", error));
 
-    fetch('http://localhost:3000/crud')
-        .then(response => response.json())
-        .then(data => {
-            const tbody = document.getElementById('tabla-registros-inises').getElementsByTagName('tbody')[0];
-            tbody.innerHTML = '';
+            // Mostrar los registros de la segunda tabla
+            const tbody2 = document.getElementById('tabla-registros-inises').getElementsByTagName('tbody')[0];
+            tbody2.innerHTML = '';
             data.forEach(record => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -140,7 +140,7 @@ function loadRecords()
                         <button class="btn-accion" onclick="deleteRecord(${record.id})">Eliminar</button>
                     </td>
                 `;
-                tbody.appendChild(row);
+                tbody2.appendChild(row);
             });
         })
         .catch(error => console.error("Error:", error));

@@ -6,7 +6,7 @@
 */
 
 // Cliente de MySQL para Node.js
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
 // Configura la conexión a la base de datos MySQL
 const database = mysql.createConnection({

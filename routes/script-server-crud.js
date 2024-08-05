@@ -57,13 +57,13 @@ router.post('/', (request, response) => {
 
 // Leer
 router.get('/', (request, response) => {
-    const sql = `SELECT * FROM sign_up`;
+    const sql = `SELECT * FROM sign_up; SELECT * FROM sign_in;`;
 
     database.query(sql, (error, results) => {
         if (error)
         {
             console.error("Error al leer los registros.", error);
-            response.status(500).send(JSON.stringify({message: "Error al leer los registros."}));
+            response.status(500).send(JSON.stringify({message: "Error al leer los registros. Motivo: " + error}));
             return;
         }
         response.json(results);
@@ -92,7 +92,7 @@ router.put('/', (request, response) => {
                 if (error)
                 {
                     console.error("Error al actualizar el registro.", error);
-                    response.status(500).send(JSON.stringify({message: "Error al acutalizar el registro."}));
+                    response.status(500).send(JSON.stringify({message: "Error al acutalizar el registro. Motivo: " + error}));
                     return;
                 }
                 response.status(201).send(JSON.stringify({message: "Registro actualizado exitosamente."}));
@@ -106,7 +106,7 @@ router.put('/', (request, response) => {
                 if (error)
                 {
                     console.error("Error al actualizar el registro.", error);
-                    response.status(500).send(JSON.stringify({message: "Error al actualizar el registro."}));
+                    response.status(500).send(JSON.stringify({message: "Error al actualizar el registro. Motivo: " + error}));
                     return;
                 }
                 response.status(201).send(JSON.stringify({message: "Registro actualizado exitosamente."}));
@@ -125,7 +125,7 @@ router.delete('/', (request, response) => {
         if (error)
         {
             console.error("Error al eliminar el registro.", error);
-            response.status(500).send(JSON.stringify({message: "Error al eliminar el registro."}));
+            response.status(500).send(JSON.stringify({message: "Error al eliminar el registro. Motivo: " + error}));
             return;
         }
         response.status(201).send(JSON.stringify({message: "Registro eliminado exitosamente."}));
