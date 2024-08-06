@@ -8,47 +8,63 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../styles/style.css">
+
+        <!--Vínculo el archivo de JavaScript que proporciona los íconos-->
+        <script src="https://kit.fontawesome.com/6eb4b28e9a.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="../styles/style-1.css">
         <title>Autenticación</title>         <!-- Hay que escoger un nombre para la págino y ponerle un ícono personalizado -->
     </head>
     <body class="body">
-        <!-- Contenedor principal -->
-        <div class="container">
-            <!-- Contenedor del formulario de registro -->
-            <div class="sign-up-container">
-                <h1 class="title">Crear cuenta</h1>
+        <!-- Contenedor del formulario de registro -->
+        <div class="container sign-up-container">
+            <h1 class="title">Crear cuenta</h1>
 
-                <!-- Formulario -->
-                <form id="sign-up-form" class="sign-up-form" autocomplete="off">
-                    <input type="text" name="username_1" id="username-input-1" class="username-input" minlength="1" maxlength="30" placeholder="Ingrese un nombre de usuario" required>
-                    <input type="email" name="email_1" id="email-input-1" class="email-input" minlength="1" maxlength="50" placeholder="Ingrese un correo electrónico" required>
-                    <input type="password" name="password_1" id="password-input-1" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese una contraseña" required>
-                    <input type="submit" name="submit_1" id="btn-submit-1" class="btn-submit" value="Crear cuenta">
-                </form>
+            <!-- Formulario -->
+            <form id="sign-up-form" class="form sign-up-form" autocomplete="off">
+                <label for="username-input-1" class="label">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username-input-1" class="username-input" minlength="1" maxlength="30" placeholder="Ingrese un nombre de usuario" required>
+                </label>
+                <label for="email-input-1" class="label">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email-input-1" class="email-input" minlength="1" maxlength="50" placeholder="Ingrese un correo electrónico" required>
+                </label>
+                <label for="password-input-1" class="label">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password-input-1" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese una contraseña" required>
+                </label>
+                <input type="submit" id="btn-submit-1" class="btn-submit" value="Crear cuenta">
+            </form>
 
-                <!-- Contenedor deplegable con los criterios para evaluar la seguridad de la contraseña ingresada -->
-                <div id="seguridad-contrasena" class="seguridad-contrasena">
-                    <ul class="ul">
-                        <li class="li"></li>
-                        <li class="li"></li>
-                        <li class="li"></li>
-                        <li class="li"></li>
-                        <li class="li"></li>
-                    </ul>
-                </div>
+            <!-- Contenedor deplegable con los criterios para evaluar la seguridad de la contraseña ingresada -->
+            <div id="seguridad-contrasena" class="seguridad-contrasena">
+                <ul class="ul">
+                    <li class="li"></li>
+                    <li class="li"></li>
+                    <li class="li"></li>
+                    <li class="li"></li>
+                    <li class="li"></li>
+                </ul>
             </div>
+        </div>
 
-            <!-- Contenedor del formulario de inicio de sesión -->
-            <div class="sign-in-container">
-                <h1 class="title">Iniciar sesión</h1>
+        <!-- Contenedor del formulario de inicio de sesión -->
+        <div class="container sign-in-container">
+            <h1 class="title">Iniciar sesión</h1>
 
-                <!-- Formulario -->
-                <form id="sign-in-form" class="sign-in-form" autocomplete="off">
-                    <input type="email" name="email_2" id="email-input-2" class="email-input" minlegth="1"  maxlength="50" placeholder="Ingrese su correo electrónico" required>
-                    <input type="password" name="password_2" id="password-input-2" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese su contraseña" required>
-                    <input type="submit" name="submit_2" id="btn-submit-2" class="btn-submit" value="Iniciar sesión">
-                </form>
-            </div>
+            <!-- Formulario -->
+            <form id="sign-in-form" class="form sign-in-form" autocomplete="off">
+                <label for="email-input-2" class="label">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email-input-2" class="email-input" minlegth="1"  maxlength="50" placeholder="Ingrese su correo electrónico" required>
+                </label>
+                <label for="password-input-2" class="label">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password-input-2" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese su contraseña" required>
+                </label>
+                <input type="submit" id="btn-submit-2" class="btn-submit" value="Iniciar sesión">
+            </form>
         </div>
 
         <!-- Conexión con el archivo de JaaScript del lado del cliente -->
