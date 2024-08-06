@@ -118,7 +118,7 @@ function loadRecords()
                     <td class="td">${record.added_at}</td>
                     <td class="td">
                         <button class="btn-accion" onclick="updateRecords(this, ${record.id}, 'sign up')">Editar</button>
-                        <button class="btn-accion" onclick="deleteRecord(${record.id})">Eliminar</button>
+                        <button class="btn-accion" onclick="deleteRecord(${record.id}, 'sign up')">Eliminar</button>
                     </td>
                 `;
                 tbody1.appendChild(row);
@@ -137,7 +137,7 @@ function loadRecords()
                     <td class="td">${record.added_at}</td>
                     <td class="td">
                         <button class="btn-accion" onclick="updateRecords(this, ${record.id}, 'sign in')">Editar</button>
-                        <button class="btn-accion" onclick="deleteRecord(${record.id})">Eliminar</button>
+                        <button class="btn-accion" onclick="deleteRecord(${record.id}, 'sign in')">Eliminar</button>
                     </td>
                 `;
                 tbody2.appendChild(row);
@@ -258,16 +258,20 @@ function updateRecords(selectedButton, id, formType)
 
 /******* DELETE *******/
 // Función para eliminar un registro en alguna de las dos tablas de la base de datos
-function deleteRecord(id)
+function deleteRecord(id, formType)
 {
     let confirmElimination = confirm("¿Desea eliminar este registro?");
+    const data = {
+        id: id,
+        formType: formType
+    };
 
     if (confirmElimination)   // Esto es igual a que "confirmElimination === true"
     {
         fetch('http://localhost:3000/crud', {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id: id})
+            body: JSON.stringify(data)
         })
         .then(response => response.json())
         .then(data => {

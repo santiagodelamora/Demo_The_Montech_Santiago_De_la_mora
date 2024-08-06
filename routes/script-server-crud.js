@@ -1,6 +1,6 @@
 /*
     Función del archivo: Archivo que recive los datos de la base de datos desde el servidor y crea las filas y columnas en el cliente
-    Nombre del archivo: crud.js
+    Nombre del archivo: script-server-crud.js
     Autor: Santiago Nicolás De la mora Núñez
     Fecha de creación del archivo: 26/7/2024
 */
@@ -14,13 +14,13 @@ const router = express.Router();
 /******* CREATE *******/
 // Crear
 router.post('/', (request, response) => {
+    let sql = null;
     const formType = request.body.formType;
     let receivedData = [
         request.body.email,
         request.body.password
     ];
 
-    let sql = null;
 
     switch (formType)
     {
@@ -33,8 +33,7 @@ router.post('/', (request, response) => {
                 if (error)
                 {
                     console.error("Error al crear el registro.", error);
-                    response.status(500).send(JSON.stringify({message: "Error al crear el registro."}));
-                    return;
+                    return response.status(500).send(JSON.stringify({message: "Error al crear el registro."}));
                 }
                 response.status(201).send(JSON.stringify({message: "Registro creado exitosamente."}));
             });
@@ -47,8 +46,7 @@ router.post('/', (request, response) => {
                 if (error)
                 {
                     console.error("Error al crear el registro.", error);
-                    response.status(500).send(JSON.stringify({message: "Error al crear el registro. "}));
-                    return;
+                    return response.status(500).send(JSON.stringify({message: "Error al crear el registro."}));
                 }
                 response.status(201).send(JSON.stringify({message: "Registro creado exitosamente."}));
             });
@@ -68,8 +66,7 @@ router.get('/', (request, response) => {
         if (error)
         {
             console.error("Error al leer los registros.", error);
-            response.status(500).send(JSON.stringify({message: "Error al leer los registros. Motivo: " + error}));
-            return;
+            return response.status(500).send(JSON.stringify({message: "Error al leer los registros. Motivo: " + error}));
         }
         response.status(200).send(JSON.stringify(results));
     });
@@ -78,14 +75,13 @@ router.get('/', (request, response) => {
 /******* UPDATE *******/
 // Actualizar
 router.put('/', (request, response) => {
+    let sql = null;
     const formType = request.body.formType;
     let receivedData = [
         request.body.newEmail,
         request.body.newPassword,
         request.body.id
     ];
-
-    let sql = null;
 
     switch(formType)
     {
@@ -98,8 +94,7 @@ router.put('/', (request, response) => {
                 if (error)
                 {
                     console.error("Error al actualizar el registro.", error);
-                    response.status(500).send(JSON.stringify({message: "Error al acutalizar el registro. Motivo: " + error}));
-                    return;
+                    return response.status(500).send(JSON.stringify({message: "Error al acutalizar el registro. Motivo: " + error}));
                 }
                 response.status(201).send(JSON.stringify({message: "Registro actualizado exitosamente."}));
             });
@@ -112,8 +107,7 @@ router.put('/', (request, response) => {
                 if (error)
                 {
                     console.error("Error al actualizar el registro.", error);
-                    response.status(500).send(JSON.stringify({message: "Error al actualizar el registro. Motivo: " + error}));
-                    return;
+                    return response.status(500).send(JSON.stringify({message: "Error al actualizar el registro. Motivo: " + error}));
                 }
                 response.status(201).send(JSON.stringify({message: "Registro actualizado exitosamente."}));
             });
@@ -124,19 +118,16 @@ router.put('/', (request, response) => {
 /******* DELETE *******/
 // Eliminar
 router.delete('/', (request, response) => {
+    const formType = request.body.formType;
     const id = request.body.id;
 
-    const sql = `
-        DELETE FROM sign_up WHERE id = ?;
-        DELETE FROM sign_in WHERE id = ?;
-    `;
-
-    database.query(sql, [id, id], (error, result) => {
+    let sql = `DELETE FROM ${(formType === 'sign up')? 'sign_up' : 'sign_in'} WHERE id = ?`;
+    
+    database.query(sql, [id], (error, result) => {
         if (error)
         {
             console.error("Error al eliminar el registro.", error);
-            response.status(500).send(JSON.stringify({message: "Error al eliminar el registro. Motivo: " + error}));
-            return;
+            return response.status(500).send(JSON.stringify({message: "Error al eliminar el registro. Motivo: " + error}));
         }
         response.status(201).send(JSON.stringify({message: "Registro eliminado exitosamente."}));
     });
