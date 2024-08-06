@@ -5,6 +5,9 @@
     Fecha de creación del archivo: 26/7/2024
 */
 
+// Hace que el el contenido de la base de datos se muestre en la tabla CRUD cuando se cargue la página
+document.addEventListener('DOMContentLoaded', loadRecords);
+
 /******* CREATE *******/
 // Función que crea un nuevo registro en la base de datos
 function addRecord(formType)
@@ -282,6 +285,3 @@ function deleteRecord(id, formType)
         .catch(error => console.error("El error es:", error));
     }
 }
-
-// Hace que el el contenido de la base de datos se muestre en la tabla CRUD cuando se cargue la página
-document.addEventListener('DOMContentLoaded', loadRecords);

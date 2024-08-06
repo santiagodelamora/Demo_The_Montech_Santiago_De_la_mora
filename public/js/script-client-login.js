@@ -225,3 +225,55 @@ passwordInput_1.addEventListener('input', function() {
 
     isValidPassword(passwordInputValue);
 });
+
+// Hace que al presionar la combinación de teclas 'Ctrl + Shift + Alt + Ñ' se abra la página 'crud.html' que muestra una tabla con los registros de la base de datos y a la cuál se le pueden realizar acciones CRUD
+let pressedKeys = {
+    ctrlKey: false,
+    shiftKey: false,
+    altKey: false,
+    enieKey: false,
+};
+
+document.addEventListener('keydown', (event) => {
+    if (event.ctrlKey)
+    {
+        pressedKeys.ctrlKey = true;
+        console.log('Ctrl');
+    }
+    if (event.shiftKey)
+    {
+        pressedKeys.shiftKey = true;
+        console.log('Shift');
+    }
+    if (event.altKey)
+    {
+        pressedKeys.altKey = true;
+        console.log('Alt');
+    }
+    if (event.key.toUpperCase() == 'Ñ')
+    {
+        pressedKeys.enieKey = true;
+        console.log('Ñ');
+    }
+
+    if (pressedKeys.ctrlKey && pressedKeys.shiftKey && pressedKeys.altKey && pressedKeys.enieKey)
+    {
+        alert("Redirigiendo a la página de acciones CRUD...");
+        window.location.href = 'crud.html';
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    if (event.key === 'Control' || event.key === 'ControlLeft' || event.key === 'ControlRight') {
+        pressedKeys.ctrlKey = false;
+    }
+    if (event.key === 'Shift' || event.key === 'ShiftLeft' || event.key === 'ShiftRight') {
+        pressedKeys.shiftKey = false;
+    }
+    if (event.key === 'Alt' || event.key === 'AltLeft' || event.key === 'AltRight') {
+        pressedKeys.altKey = false;
+    }
+    if (event.key.toUpperCase() == 'Ñ') {
+        pressedKeys.enieKey = false;
+    }
+});
