@@ -36,6 +36,21 @@
     object-fit: cover;
 }
 
+.btn-play-audio {
+    position: absolute;
+    top: 10vh;
+    right: 10vw;
+    background-color: rgb(180, 180, 180);
+    border-radius: 50%;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+.__paused__ {
+    box-shadow: inset 0 0 3px 3px rgba(0, 0, 0, 0.35);
+    transform: scale(0.95);
+}
+
 .container {
     width: 60%;
     height: 60%;
@@ -188,11 +203,11 @@
     font-size: 18px;
 }
 
-.label-valid {
+.__label-valid__ {
     background-color: rgb(34, 182, 34);
 }
 
-.label-invalid {
+.__label-invalid__ {
     background-color: rgb(255, 0, 0);
 }
 

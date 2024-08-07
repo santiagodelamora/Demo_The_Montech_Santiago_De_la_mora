@@ -17,24 +17,27 @@
     </head>
     <body class="body">
         <!-- Controlan la aparición de video en el fondo y la música de la página -->
-        <video autoplay loop muted class="video-background">
+        <!-- <video autoplay loop muted class="video-background">
             <source src="../src/ravens-rock-glory-days-video.mp4" type="video/mp4">
             Tu navegador no soporta video. Actualízalo o cambiate a otro para poder reproducir el video
-        </video>
-        <audio autoplay loop>
+        </video> -->
+        <audio autoplay hidden id="audio">
             <!-- Se colocan varios audios en diferente formato para tener mayor compatibilidad con los navegadores -->
             <source src="../src/rave-dark-ravens-ruin-session-1.mp3" type="audio/mpeg">
             <source src="../src/rave-dark-ravens-ruin-session-1.ogg" type="audio/ogg">
             <source src="../src/rave-dark-ravens-ruin-session-1.m4a" type="audio/mp4">
             Tu navegador no soporta audio. Actualízalo o cambiate a otro para poder reproducir el audio
         </audio>
+        
+        <!-- Botón que controla al reproducción del audio de fondo -->
+        <i id="btn-play-audio" class="fa-solid fa-play btn-play-audio" title="Pausar/reproducir audio"></i>
 
         <!-- Contenedor del formulario de registro -->
         <div class="container sign-up-container">
             <div class="change-form-container chgfrmcnt-sign-up">
                 <h2 class="chgfrmcnt-title">¡Inicia sesión ahora mismo!</h2>
                 <p class="chgfrmcnt-subtitle">y no te pierdas lo mejor</p>
-                <button class="btn-change-form">Iniciar sesión</button>
+                <button class="btn-change-form" title="Iniciar sesión">Iniciar sesión</button>
             </div>
             <div class="main-subcontainer mnsbc-sign-up">
                 <h1 class="main-title">Crear cuenta</h1>
@@ -54,7 +57,7 @@
                         <input type="password" id="password-input-1" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese una contraseña" required>
                         <i class="fa-solid fa-eye btn-show-password"></i>
                     </label>
-                    <input type="submit" class="btn-submit" value="Crear cuenta">
+                    <input type="submit" class="btn-submit" value="Crear cuenta" title="Crear cuenta">
                 </form>
 
                 <!-- Contenedor deplegable con los criterios para evaluar la seguridad de la contraseña ingresada -->
@@ -82,13 +85,13 @@
                         <input type="password" id="password-input-2" class="password-input" minlength="1" maxlength="20" placeholder="Ingrese su contraseña" required>
                         <i class="fa-solid fa-eye btn-show-password"></i>
                     </label>
-                    <input type="submit" class="btn-submit" value="Iniciar sesión">
+                    <input type="submit" class="btn-submit" value="Iniciar sesión" title="Iniciar sesión">
                 </form>
             </div>
             <div class="change-form-container chgfrmcnt-sign-in">
                 <h2 class="chgfrmcnt-title">¿No tienes una cuenta?</h2>
                 <p class="chgfrmcnt-subtitle">no te preocupes</p>
-                <button class="btn-change-form">Crear cuenta</button>
+                <button class="btn-change-form" title="Crear cuenta">Crear cuenta</button>
             </div>
         </div>
 

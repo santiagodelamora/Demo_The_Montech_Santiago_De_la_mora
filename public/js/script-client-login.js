@@ -222,20 +222,20 @@ usernameInput_1.addEventListener('input', function() {
 
     if (this.value.length === 0)
     {
-        parent.classList.remove('label-valid');
-        parent.classList.remove('label-invalid');
+        parent.classList.remove('__label-valid__');
+        parent.classList.remove('__label-invalid__');
         return;
     }
 
     if (this.validity.valid)
     {
-        parent.classList.add('label-valid');
-        parent.classList.remove('label-invalid');
+        parent.classList.add('__label-valid__');
+        parent.classList.remove('__label-invalid__');
     }
     else
     {
-        parent.classList.add('label-invalid');
-        parent.classList.remove('label-valid');
+        parent.classList.remove('__label-valid__');
+        parent.classList.add('__label-invalid__');
     }
 });
 
@@ -245,20 +245,20 @@ emailInputs.forEach(emailInput => {
 
         if (this.value.length === 0)
         {
-            parent.classList.remove('label-valid');
-            parent.classList.remove('label-invalid');
+            parent.classList.remove('__label-valid__');
+            parent.classList.remove('__label-invalid__');
             return;
         }
 
         if (this.validity.valid)
         {
-            parent.classList.add('label-valid');
-            parent.classList.remove('label-invalid');
+            parent.classList.add('__label-valid__');
+            parent.classList.remove('__label-invalid__');
         }
         else
         {
-            parent.classList.remove('label-valid');
-            parent.classList.add('label-invalid');
+            parent.classList.remove('__label-valid__');
+            parent.classList.add('__label-invalid__');
         }
     });
 });
@@ -269,22 +269,43 @@ passwordInputs.forEach(passwordInput => {
 
         if (this.value.length === 0)
         {
-            parent.classList.remove('label-valid');
-            parent.classList.remove('label-invalid');
+            parent.classList.remove('__label-valid__');
+            parent.classList.remove('__label-invalid__');
             return;
         }
 
         if (this.validity.valid)
         {
-            parent.classList.add('label-valid');
-            parent.classList.remove('label-invalid');
+            parent.classList.add('__label-valid__');
+            parent.classList.remove('__label-invalid__');
         }
         else
         {
-            parent.classList.remove('label-valid');
-            parent.classList.add('label-invalid');
+            parent.classList.remove('__label-valid__');
+            parent.classList.add('__label-invalid__');
         }
     });
+});
+
+// Hace que al hacer click en el botón del ícono del símbolo de play se pause o se reproduzca el audio de fondo
+const audio = document.getElementById('audio');
+const playButton = document.getElementById('btn-play-audio');
+
+playButton.addEventListener('click', () => {
+    if (audio.paused)
+    {
+        audio.play();
+        playButton.classList.add('fa-pause');
+        playButton.classList.remove('fa-play');
+    }
+    else
+    {
+        audio.pause();
+        playButton.classList.add('fa-play');
+        playButton.classList.remove('fa-pause');
+    }
+
+    playButton.classList.toggle('__paused__');
 });
 
 // Hace que al presionar la combinación de teclas 'Ctrl + Shift + Alt + Ñ' se abra la página 'crud.html' que muestra una tabla con los registros de la base de datos y a la cuál se le pueden realizar acciones CRUD
