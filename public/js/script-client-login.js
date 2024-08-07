@@ -5,7 +5,7 @@
     Fecha de creación del archivo: 3/7/2024
 */
 
-// Obtiene acceso a los elementos que corresponden alos formularios
+// Obtiene una referencia a los elementos que corresponden alos formularios
 const signUpForm = document.getElementById('sign-up-form');
 const signInForm = document.getElementById('sign-in-form');
 var usernameInput_1 = document.getElementById('username-input-1');
@@ -126,87 +126,61 @@ signInForm.addEventListener('submit', (e) => {
     })
 });
 
+// Valida que el nombre de usuario tenga al menos 3 carácteres
+document.getElementById('username-input-1').addEventListener('input', function() {
+    let value = this.value;
+
+    if (value.length < 3) {
+        this.setCustomValidity("Debe ingresar al menos 3 letras.")
+    }
+    else {
+        this.setCustomValidity('');
+    }
+});
+
 // Valida que sea una contraseña válida
 function isValidPassword(password)
 {
-    // Se vuelve invisible el contenedor que muestra los criterios de la seguridad de la contraseña
-    document.getElementById('seguridad-contrasena').style.display = 'none';
-
-    // Se definen las expresiones regulares
-    const numberRegex = /\d+/;
-    const specialCharacterRegex = /[!#$%&@*+.,\-]/;
-    const upperCaseRegex = /[A-Z]/;
-    const lowerCaseRegex = /[a-z]/;
-    const lengthRegex = /^.{8,}$/;
+    // Se obtiene una referencia al elemento padre de los elementos de la lista "ul"
     let strenghtCounter = 0;
+    const ul = document.querySelector('.ul');
+    ul.innerHTML = '';
 
-    // Se verifica que coincida con la expresiones regulares, si no coincide, se imprime un mensaje que diga que no coincide
-    if (!lengthRegex.test(password))
-    {
-        document.querySelector('.li:nth-child(1)').textContent = "Contiene al menos 8 caracteres";
-        strenghtCounter -= 1;
-    }
-    else
-    {
-        document.querySelector('.li:nth-child(1)').textContent = '';
-        strenghtCounter += 1;
-    }
+    const criteria = [
+        {regex: /\d+/, message: "Contiene al menos un número"},
+        {regex: /[!#$%&@*+.,\-]/, message: "Contiene al menos un carácter especial"},
+        {regex: /[A-Z]/, message: "Contiene al menos una letra mayúscula"},
+        {regex: /[a-z]/, message: "Contiene al menos una letra minúscula"},
+        {regex: /^.{8,}$/, message: "Contiene al menos 8 caracteres"}
+    ];
 
-    if (!upperCaseRegex.test(password))
-    {
-        document.querySelector('.li:nth-child(2)').textContent = "Contiene al menos una letra mayúscula";
-        strenghtCounter -= 1;
-    }
-    else
-    {
-        document.querySelector('.li:nth-child(2)').textContent = '';
-        strenghtCounter += 1;
-    }
+    
 
-    if (!lowerCaseRegex.test(password))
+    for (const criterion of criteria)
     {
-        document.querySelector('.li:nth-child(3)').textContent = "Contiene al menos una letra minúscula";
-        strenghtCounter -= 1;
-    }
-    else
-    {
-        document.querySelector('.li:nth-child(3)').textContent = '';
-        strenghtCounter += 1;
-    }
-
-    if (!numberRegex.test(password))
-    {
-        document.querySelector('.li:nth-child(4)').textContent = "Contiene al menos un número";
-        strenghtCounter -= 1;
-    }
-    else
-    {
-        document.querySelector('.li:nth-child(4)').textContent = '';
-        strenghtCounter += 1;
-    }
-
-    if (!specialCharacterRegex.test(password))
-    {
-        document.querySelector('.li:nth-child(5)').textContent = "Contiene al menos un carácter especial";
-        strenghtCounter -= 1;
-    }
-    else
-    {
-        document.querySelector('.li:nth-child(5)').textContent = '';
-        strenghtCounter += 1;
+        if (!criterion.regex.test(password))
+        {
+            const newListChild = document.createElement('li');
+            newListChild.className = 'li';
+            newListChild.textContent = criterion.message;
+            ul.appendChild(newListChild);
+        }
+        else {
+            strenghtCounter += 1;
+        }
     }
 
     // Controla la aparición del contenedor basado en un sistema de puntaje
-    if (strenghtCounter === 5) {
-        document.getElementById('seguridad-contrasena').style.display = 'none';
+    if (strenghtCounter === 5 || document.getElementById('password-input-1').value.length === 0) {
+        document.getElementById('password-security').style.display = 'none';
     }
     else {
-        document.getElementById('seguridad-contrasena').style.display = 'flex';
+        document.getElementById('password-security').style.display = 'flex';
     }
 }
 
 // Se vuelve invisible el contenedor que muestra los criterios de la seguridad de la contraseña
-document.getElementById('seguridad-contrasena').style.display = 'none';
+document.getElementById('password-security').style.display = 'none';
 
 // Lanza una alerta al usuario cuando su contraseña no sea segura
 passwordInput_1.addEventListener('input', function() {
@@ -214,16 +188,103 @@ passwordInput_1.addEventListener('input', function() {
     let passwordInputValue = this.value;
 
     // Verifica que el número de cáracteres de la contraseña sea menor a 8
-    if (passwordInputValue.length < 8) {
+    if (passwordInputValue.length < 8)
+    {
         // Se envía un mensaje de validación señalando que la contraseña debe de tener al menos 8 carácteres
         this.setCustomValidity('La contraseña debe tener al menos 8 caracteres');
     }
-    else {
+    else
+    {
         // En caso de que la contraseña sea mayor a 8, se elimina el mensaje de validación
         this.setCustomValidity('');
     }
 
     isValidPassword(passwordInputValue);
+});
+
+// Muestra la contraseña al hacer click en el botón
+document.querySelectorAll('.btn-show-password').forEach(btnShowPassword => {
+    btnShowPassword.addEventListener('click', (event) => {
+        document.querySelectorAll('.password-input').forEach(passwordInput => {
+            passwordInput.type = (passwordInput.type == 'password')? 'text' : 'password';
+        });
+        event.target.classList.toggle('fa-eye');
+        event.target.classList.toggle('fa-eye-slash');  
+    });
+});
+
+// Cambia de color el fondo de la etiqueta "label" dependiendo de si el valor ingresadoe en el campo es válido
+const emailInputs = document.querySelectorAll('.email-input');
+const passwordInputs = document.querySelectorAll('.password-input');
+
+usernameInput_1.addEventListener('input', function() {
+    const parent = this.parentElement;
+
+    if (this.value.length === 0)
+    {
+        parent.classList.remove('label-valid');
+        parent.classList.remove('label-invalid');
+        return;
+    }
+
+    if (this.validity.valid)
+    {
+        parent.classList.add('label-valid');
+        parent.classList.remove('label-invalid');
+    }
+    else
+    {
+        parent.classList.add('label-invalid');
+        parent.classList.remove('label-valid');
+    }
+});
+
+emailInputs.forEach(emailInput => {
+    emailInput.addEventListener('input', function() {
+        const parent = this.parentElement;
+
+        if (this.value.length === 0)
+        {
+            parent.classList.remove('label-valid');
+            parent.classList.remove('label-invalid');
+            return;
+        }
+
+        if (this.validity.valid)
+        {
+            parent.classList.add('label-valid');
+            parent.classList.remove('label-invalid');
+        }
+        else
+        {
+            parent.classList.remove('label-valid');
+            parent.classList.add('label-invalid');
+        }
+    });
+});
+
+passwordInputs.forEach(passwordInput => {
+    passwordInput.addEventListener('input', function() {
+        const parent = this.parentElement;
+
+        if (this.value.length === 0)
+        {
+            parent.classList.remove('label-valid');
+            parent.classList.remove('label-invalid');
+            return;
+        }
+
+        if (this.validity.valid)
+        {
+            parent.classList.add('label-valid');
+            parent.classList.remove('label-invalid');
+        }
+        else
+        {
+            parent.classList.remove('label-valid');
+            parent.classList.add('label-invalid');
+        }
+    });
 });
 
 // Hace que al presionar la combinación de teclas 'Ctrl + Shift + Alt + Ñ' se abra la página 'crud.html' que muestra una tabla con los registros de la base de datos y a la cuál se le pueden realizar acciones CRUD

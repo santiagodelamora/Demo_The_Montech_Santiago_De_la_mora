@@ -5,10 +5,16 @@
     Fecha de creación del archivo: 3/7/2024
 */
 
+/* Variables CSS */
+:root {
+    --font-for-input-label: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 /* Resetea los márgenes internos y externos */
 * {
     margin: 0;
     padding: 0;
+    font-family: Century Gothic;
 }
 
 .body {
@@ -19,24 +25,87 @@
     position: relative;
 }
 
-.container {
-    width: 60%;
-    height: 60%;
-    border: thin solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 25px;
-    position: absolute; 
+.video-background {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.container {
+    width: 60%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    /*position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+    background-color: rgb(33, 33, 33);
 }
 
 .sign-up-container {
     z-index: 1;
-    background-color: blueviolet;
+}
+
+.main-subcontainer {
+    height: 100%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mnsbc-sign-up {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.mnsbc-sign-in {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.change-form-container {
+    height: 100%;
+    width: 25%;
+    background-color: rgb(77, 77, 77);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.chgfrmcnt-sign-up {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.chgfrmcnt-sign-in {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.chgfrmcnt-title, .chgfrmcnt-subtitle {
+    text-align: center;
+}
+
+.chgfrmcnt-subtitle {
+    margin-top: 10px;
+}
+
+.main-title {
+    color: white;
+    font-size: 40px;
+    margin-bottom: 10px;
 }
 
 .form {
@@ -45,8 +114,6 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 80%;
-    border: thin solid red;
 }
 
 .label {
@@ -54,24 +121,83 @@
     padding-left: 20px;
     border-radius: 25px;
     background-color: rgb(235, 235, 235);
+    position: relative;
 }
 
 .username-input, .email-input, .password-input {
-    padding: 15px 25px;
+    padding: 12px 25px;
     border-radius: 25px;
     margin-left: 9px;
     border: none;
     width: 280px;
+    font-family: var(--font-for-input-label);
+    font-size: 16px;
 }
 
 .username-input:focus, .email-input:focus, .password-input:focus {
     outline: none;
 }
 
+.username-input:invalid, .email-input:invalid, .password-input:invalid {
+    color: red;
+}
+
+.username-input:valid, .email-input:valid, .password-input:valid {
+    color: green;
+}
+
 .btn-submit {
     border: none;
     outline: none;
-    padding: 13px 35px;
-    margin: 10px 0;
+    padding: 11px 40px;
+    margin: 15px 0;
     border-radius: 25px;
+    font-size: 17px;
+    font-family: var(--font-for-input-label);
+    transition: all 400ms ease-in-out;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px 10px rgb(235, 235, 235);
+}
+
+.btn-change-form {
+    border: none;
+    outline: none;
+    padding: 7px 15px;
+    border-radius: 18px;
+    margin-top: 20px;
+    font-family: var(--font-for-input-label);
+    transition: all 400ms ease-in-out;
+    cursor: pointer;
+}
+
+.btn-change-form:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px 10px rgb(235, 235, 235);
+}
+
+.btn-show-password {
+    position: absolute;
+    right: 19px;
+    top: 14px;
+    z-index: 1;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.label-valid {
+    background-color: rgb(34, 182, 34);
+}
+
+.label-invalid {
+    background-color: rgb(255, 0, 0);
+}
+
+.password-security {
+    background-color: gray;
+    border-radius: 20px;
+    padding: 15px 35px;
 }

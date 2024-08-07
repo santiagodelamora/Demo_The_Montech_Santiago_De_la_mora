@@ -7,3 +7,6 @@ node_modules/
 
 # Directorio (carpeta) que contiene el archivo SQL con la estructura de la base de datos
 models/db/
+
+# Video del fondo de la página de autenticación (es demasiado pesada para GitHub y no se puede subir)
+*.mp4
