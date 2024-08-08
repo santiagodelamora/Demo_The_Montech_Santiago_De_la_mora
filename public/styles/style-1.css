@@ -23,6 +23,7 @@
     align-items: center;
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 
 .video-background {
@@ -40,10 +41,13 @@
     position: absolute;
     top: 10vh;
     right: 10vw;
-    background-color: rgb(180, 180, 180);
+    background-color: rgb(77, 77, 77);
     border-radius: 50%;
-    padding: 10px 12px;
+    padding: 12px 15px;
     cursor: pointer;
+    color: white;
+    z-index: 1;
+    font-size: 20px;
 }
 
 .__paused__ {
@@ -54,19 +58,46 @@
 .container {
     width: 60%;
     height: 60%;
-    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 30px;
-    /*position: absolute; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);*/
-    background-color: rgb(33, 33, 33);
+    background-color: rgb(255, 0, 0);
+    box-shadow: 0 0 30vh 30vh rgb(255, 0, 0);
 }
 
-.sign-up-container {
-    z-index: 1;
+.__shown-container__ {
+    display: flex;
+
+    /* animation: <animation-name> <animation-duration> <animation-timing-function> <animation-iteration-count> <animation-fill-mode>; */
+    animation: compress-and-appear 2s ease 1 forwards, solid-dashed-line-intermittent-change 500ms linear infinite;
+}
+
+@keyframes compress-and-appear
+{
+    0% {
+        transform: scale(3);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes solid-dashed-line-intermittent-change
+{
+    to {
+        border: 3px solid black;
+    }
+    
+    from {
+        border: 3px dashed black;
+    }
+}
+
+.__hidden-container__ {
+    display: none;
 }
 
 .main-subcontainer {
@@ -102,15 +133,19 @@
 .chgfrmcnt-sign-up {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+    border-right: 3px dashed black;
 }
 
 .chgfrmcnt-sign-in {
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+    border-left: 3px dashed black;
 }
 
-.chgfrmcnt-title, .chgfrmcnt-subtitle {
+.chgfrmcnt-text {
     text-align: center;
+    margin: 0 10px;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
 }
 
 .chgfrmcnt-subtitle {
@@ -120,7 +155,8 @@
 .main-title {
     color: white;
     font-size: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
 }
 
 .form {
@@ -137,6 +173,7 @@
     border-radius: 25px;
     background-color: rgb(235, 235, 235);
     position: relative;
+    box-shadow: 4px 4px 7px 1px rgba(0, 0, 0, 0.4);
 }
 
 .username-input, .email-input, .password-input {
@@ -171,6 +208,7 @@
     font-family: var(--font-for-input-label);
     transition: all 400ms ease-in-out;
     cursor: pointer;
+    box-shadow: 4px 4px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 .btn-submit:hover {
@@ -187,6 +225,7 @@
     font-family: var(--font-for-input-label);
     transition: all 400ms ease-in-out;
     cursor: pointer;
+    box-shadow: 4px 4px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 .btn-change-form:hover {
@@ -204,15 +243,27 @@
 }
 
 .__label-valid__ {
-    background-color: rgb(34, 182, 34);
+    background-color: rgb(90, 218, 90);
 }
 
 .__label-invalid__ {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 91, 91);
 }
 
 .password-security {
-    background-color: gray;
-    border-radius: 20px;
-    padding: 15px 35px;
+    background-color: rgb(77, 77, 77);
+    border-radius: 15px;
+    padding: 18px 35px;
+    margin-top: 10px;
+}
+
+.li {
+    font-size: 15px;
+    color: rgb(0, 183, 0);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.li:last-child {
+    margin-bottom: 0;
 }

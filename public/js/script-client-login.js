@@ -126,6 +126,18 @@ signInForm.addEventListener('submit', (e) => {
     })
 });
 
+// Hace que al hacer click el boton de "Iniciar sesión" o "Crear cuenta" se cambie el contenedor que contiene el formulario
+function changeForm()
+{
+    document.querySelector('.sign-up-container').classList.toggle('__hidden-container__');
+    document.querySelector('.sign-up-container').classList.toggle('__shown-container__');
+    document.querySelector('.sign-in-container').classList.toggle('__hidden-container__');
+    document.querySelector('.sign-in-container').classList.toggle('__shown-container__');
+    document.querySelector('.username-input').value = '';
+    document.querySelectorAll('.email-input').forEach(emailInput => emailInput.value = '');
+    document.querySelectorAll('.password-input').forEach(passwordInput => passwordInput.value = '');
+}
+
 // Valida que el nombre de usuario tenga al menos 3 carácteres
 document.getElementById('username-input-1').addEventListener('input', function() {
     let value = this.value;
@@ -153,8 +165,6 @@ function isValidPassword(password)
         {regex: /[a-z]/, message: "Contiene al menos una letra minúscula"},
         {regex: /^.{8,}$/, message: "Contiene al menos 8 caracteres"}
     ];
-
-    
 
     for (const criterion of criteria)
     {
@@ -200,6 +210,48 @@ passwordInput_1.addEventListener('input', function() {
     }
 
     isValidPassword(passwordInputValue);
+});
+
+// Hace que si el formulario no es válido (es decir, al menos uno de los campos está vacío o no cumple con el formato correcto) el botón no pueda ser presionado por el usuario hasta que todos los campos sean válidos
+document.querySelectorAll('.btn-submit').forEach(btnSubmit => {
+    const formulario = btnSubmit.closest('form');
+
+    btnSubmit.addEventListener('mouseover', function() {
+        if (!formulario.checkValidity())
+        {   
+            this.disabled = true;
+            this.style.backgroundColor = 'white';
+            this.style.color = 'black';
+            this.style.cursor = 'default';
+            this.style.boxShadow = '4px 4px 7px 1px rgba(0, 0, 0, 0.3)';
+            this.style.transform = (this.style.transform == 'translateX(-110px)')? 'translateX(110px)' : 'translateX(-110px)';
+        }
+    });
+    
+    const getButtonToNormalState = () => {
+        btnSubmit.disabled = false;
+        btnSubmit.style.cursor = 'pointer';
+        btnSubmit.style.transform = 'translateX(0)';
+        btnSubmit.style.boxShadow = '0 0 30px 10px rgb(235, 235, 235)';
+    };
+
+    formulario.addEventListener('input', function() {
+        if (this.checkValidity()) {
+            getButtonToNormalState();
+        }
+
+        const inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+        let areAllEmpty = true;
+        inputFields.forEach(inputField => {
+            if (inputField.value) {
+                areAllEmpty = false;
+            }
+        });
+
+        if (areAllEmpty) {
+            getButtonToNormalState();
+        }
+    });
 });
 
 // Muestra la contraseña al hacer click en el botón

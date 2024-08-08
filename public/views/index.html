@@ -17,27 +17,29 @@
     </head>
     <body class="body">
         <!-- Controlan la aparición de video en el fondo y la música de la página -->
-        <!-- <video autoplay loop muted class="video-background">
+         <video autoplay loop muted class="video-background">
             <source src="../src/ravens-rock-glory-days-video.mp4" type="video/mp4">
             Tu navegador no soporta video. Actualízalo o cambiate a otro para poder reproducir el video
-        </video> -->
-        <audio autoplay hidden id="audio">
+        </video>
+        <audio autoplay loop hidden src="../src/rave-dark-ravens-ruin-session-1.mp3" id="audio">
             <!-- Se colocan varios audios en diferente formato para tener mayor compatibilidad con los navegadores -->
-            <source src="../src/rave-dark-ravens-ruin-session-1.mp3" type="audio/mpeg">
+            <!--<source src="../src/rave-dark-ravens-ruin-session-1.mp3" type="audio/mpeg">
             <source src="../src/rave-dark-ravens-ruin-session-1.ogg" type="audio/ogg">
             <source src="../src/rave-dark-ravens-ruin-session-1.m4a" type="audio/mp4">
-            Tu navegador no soporta audio. Actualízalo o cambiate a otro para poder reproducir el audio
+            Tu navegador no soporta audio. Actualízalo o cambiate a otro para poder reproducir el audio-->
         </audio>
         
         <!-- Botón que controla al reproducción del audio de fondo -->
-        <i id="btn-play-audio" class="fa-solid fa-play btn-play-audio" title="Pausar/reproducir audio"></i>
+        <i id="btn-play-audio" class="fa-solid fa-pause btn-play-audio" title="Pausar/reproducir audio"></i>
 
         <!-- Contenedor del formulario de registro -->
-        <div class="container sign-up-container">
+        <div class="container sign-up-container __shown-container__">
             <div class="change-form-container chgfrmcnt-sign-up">
-                <h2 class="chgfrmcnt-title">¡Inicia sesión ahora mismo!</h2>
-                <p class="chgfrmcnt-subtitle">y no te pierdas lo mejor</p>
-                <button class="btn-change-form" title="Iniciar sesión">Iniciar sesión</button>
+                <div class="chgfrmcnt-text">
+                    <h2 class="chgfrmcnt-title">¡Inicia sesión ahora mismo!</h2>
+                    <p class="chgfrmcnt-subtitle">y no te pierdas lo mejor</p>
+                </div>
+                <button class="btn-change-form" title="Iniciar sesión" onclick="changeForm()">Iniciar sesión</button>
             </div>
             <div class="main-subcontainer mnsbc-sign-up">
                 <h1 class="main-title">Crear cuenta</h1>
@@ -70,7 +72,7 @@
         </div>
 
         <!-- Contenedor del formulario de inicio de sesión -->
-        <div class="container sign-in-container">
+        <div class="container sign-in-container __hidden-container__">
             <div class="main-subcontainer mnsbc-sign-in">
                 <h1 class="main-title">Iniciar sesión</h1>
 
@@ -89,9 +91,11 @@
                 </form>
             </div>
             <div class="change-form-container chgfrmcnt-sign-in">
-                <h2 class="chgfrmcnt-title">¿No tienes una cuenta?</h2>
-                <p class="chgfrmcnt-subtitle">no te preocupes</p>
-                <button class="btn-change-form" title="Crear cuenta">Crear cuenta</button>
+                <div class="chgfrmcnt-text">
+                    <h2 class="chgfrmcnt-title">¿No tienes una cuenta?</h2>
+                    <p class="chgfrmcnt-subtitle">no te preocupes</p>
+                </div>
+                <button class="btn-change-form" title="Crear cuenta" onclick="changeForm()">Crear cuenta</button>
             </div>
         </div>
 
