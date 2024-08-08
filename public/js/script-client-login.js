@@ -224,7 +224,13 @@ document.querySelectorAll('.btn-submit').forEach(btnSubmit => {
             this.style.color = 'black';
             this.style.cursor = 'default';
             this.style.boxShadow = '4px 4px 7px 1px rgba(0, 0, 0, 0.3)';
-            this.style.transform = (this.style.transform == 'translateX(-110px)')? 'translateX(110px)' : 'translateX(-110px)';
+
+            let windowWidth = (window.innerWidth > 650)? ['110px', '-110px'] : ['12vw', '-12vw'];
+            window.addEventListener('resize', () => {
+                windowWidth = (window.innerWidth > 650)? ['110px', '-110px'] : ['12vw', '-12vw'];
+            });
+            
+            this.style.transform = (this.style.transform == `translateX(${windowWidth[1]})`)? `translateX(${windowWidth[0]})` : `translateX(${windowWidth[1]})`;
         }
     });
     

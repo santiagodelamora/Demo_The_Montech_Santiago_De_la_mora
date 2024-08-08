@@ -62,7 +62,7 @@
     align-items: center;
     border-radius: 30px;
     background-color: rgb(255, 0, 0);
-    box-shadow: 0 0 30vh 30vh rgb(255, 0, 0);
+    box-shadow: 0 0 30vw 16vw rgb(255, 0, 0);
 }
 
 .__shown-container__ {
@@ -266,4 +266,374 @@
 
 .li:last-child {
     margin-bottom: 0;
+}
+
+/* ---------------------Ajuste responsivo (media queries)--------------------- */
+@media (max-width: 1400px)
+{
+    .container {
+        width: 65%;
+    }
+}
+
+@media (max-width: 1300px)
+{
+    .container {
+        width: 70%;
+    }
+}
+
+@media (max-width: 1200px)
+{
+    .container {
+        width: 75%;
+    }
+}
+
+@media (max-width: 1100px)
+{
+    .container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1050px)
+{
+    .container {
+        width: 85%;
+    }
+}
+
+@media (max-width: 1000px)
+{
+    .change-form-container {
+        width: 30%;
+    }
+
+    .chgfrmcnt-text {
+        margin: 0 15px;
+    }
+
+    .main-subcontainer {
+        width: 70%;
+    }
+}
+
+@media (max-width: 900px)
+{
+    .main-title {
+        font-size: 35px;
+    }
+
+    .username-input, .email-input, .password-input {
+        padding: 11px 20px;
+    }
+
+    .btn-submit {
+        padding: 9px 30px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 800px)
+{
+    .chgfrmcnt-title {
+        font-size: 21px;
+    }
+
+    .chgfrmcnt-subtitle {
+        font-size: 15px;
+    }
+
+    .label {
+        padding-left: 18px;
+    }
+
+    .username-input, .email-input, .password-input {
+        padding: 10px 18px;
+        margin-left: 5px;
+    }
+
+    .fa-solid.fa-user, .fa-solid.fa-evelope, .fa-solid.fa-lock {
+        font-size: 15px;
+    }
+
+    .btn-submit {
+        padding: 9px 28px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 790px)
+{
+    .container {
+        flex-direction: column;
+        width: 70%;
+    }
+
+    .sign-up-container {
+        height: fit-content;
+    }
+
+    .change-form-container {
+        width: 100%;
+        height: 30%;
+    }
+    
+    .chgfrmcnt-sign-up {
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 30px;
+        border-right: none;
+        padding: 25px 0;
+    }
+    
+    .chgfrmcnt-sign-in {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 30px;
+        border-left: none;
+    }
+
+    .main-subcontainer {
+        width: 100%;
+        height: 70%;
+    }
+
+    .mnsbc-sign-up {
+        height: fit-content;
+        padding: 37px 0 40px;
+    }
+
+    .mnsbc-sign-in {
+        height: 60%;
+    }
+
+    .chgfrmcnt-sign-in {
+        height: 40%;        
+    }
+
+    .chgfrmcnt-sign-in .chgfrmcnt-title {
+        font-size: 25px;
+        margin-bottom: 16px;
+    }
+
+    .chgfrmcnt-sign-in .chgfrmcnt-subtitle {
+        font-size: 18px;
+    }
+
+    .chgfrmcnt-sign-in .btn-change-form {
+        font-size: 15px;
+        padding: 10px 33px;
+        border-radius: 20px;
+    }
+
+    .li {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 750px)
+{
+    .main-title {
+        font-size: 30px;
+    }
+
+    .label {
+        padding-left: 18px;
+    }
+
+    .username-input, .email-input, .password-input {
+        padding: 9px 19px;
+        margin-left: 5px;
+        width: 250px;
+    }
+
+    .fa-solid.fa-user, .fa-solid.fa-envelope, .fa-solid.fa-lock, .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        font-size: 15px;
+    }
+
+    .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        top: 13px;
+    }
+
+    .btn-submit {
+        padding: 7px 21px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 650px)
+{
+    .container {
+        box-shadow: 0 0 35vw 23vw rgb(255, 0, 0);
+    }
+
+    .main-title {
+        font-size: 30px;
+    }
+
+    .label {
+        padding-left: 18px;
+    }
+
+    .username-input, .email-input, .password-input {
+        padding: 9px 19px;
+        margin-left: 5px;
+        width: 38vw;
+        font-size: 15px;
+    }
+
+    .fa-solid.fa-user, .fa-solid.fa-envelope, .fa-solid.fa-lock, .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        font-size: 13px;
+    }
+
+    .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        top: 13px;
+    }
+
+    .btn-submit {
+        padding: 7px 21px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 550px)
+{
+    .password-input {
+        padding-right: 9vw;
+        width: 34vw;
+    }
+
+    .fa-solid.fa-eye, .fa-solid.fa-eye-slash  {
+        right: 18px;
+    }
+
+    .chgfrmcnt-sign-in .chgfrmcnt-title {
+        font-size: 22px;
+    }
+
+    .chgfrmcnt-sign-in .chgfrmcnt-subtitle {
+        font-size: 17px;
+    }
+
+    .chgfrmcnt-sign-in .btn-change-form {
+        padding: 8px 30px;
+    }
+
+    .li {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 500px)
+{
+    .chgfrmcnt-title {
+        font-size: 4vw;
+    }
+
+    .chgfrmcnt-subtitle {
+        font-size: 3vw;
+    }
+
+    .chgfrmcnt-sign-in .btn-change-form, .chgfrmcnt-sign-up .btn-change-form {
+        padding: 1vw 2.8vw;
+        font-size: 2.8vw;
+    }
+
+    .main-title {
+        font-size: 6vw;
+    }
+
+    .username-input, .email-input, .password-input {
+        padding: 1.5vw 19px;
+        font-size: 13px;
+    }
+
+    .password-input {
+        padding-right: 8vw;
+    }
+
+    .btn-submit {
+        padding: 1vw 2.8vw;
+        font-size: 2.8vw;
+    }
+
+    .fa-solid.fa-user, .fa-solid.fa-envelope, .fa-solid.fa-lock, .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        font-size: 2.9vw;
+    }
+
+    .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        top: 2.4vw;
+        right: 3.2vw;
+    }
+
+    .password-security {
+        padding: 3vw 6.5vw;
+    }
+
+    .li {
+        font-size: 2.3vw;
+    }
+
+    .sign-in-container {
+        height: fit-content;
+    }
+
+    .chgfrmcnt-sign-in {
+        padding: 30px 0;
+    }
+
+    .chgfrmcnt-sign-in .chgfrmcnt-title {
+        font-size: 4vw;
+    }
+
+    .chgfrmcnt-sign-in .chgfrmcnt-subtitle {
+        font-size: 3vw;
+    }
+
+    .mnsbc-sign-in {
+        padding: 35px 0;
+    }
+}
+
+@media (max-width: 400px)
+{
+    .container {
+        width: 75%;
+    }
+
+    .mnsbc-sign-in {
+        padding: 6vw 0;
+    }
+
+    .chgfrmcnt-sign-up {
+        padding: 4.2vw 0;
+    }
+
+    .chgfrmcnt-sign-in {
+        padding: 4.2vw 0;
+    }
+
+    .label {
+        padding-left: 16px;
+    }
+
+    .fa-solid.fa-user, .fa-solid.fa-envelope, .fa-solid.fa-lock, .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        font-size: 3.2vw;
+    }
+
+    .fa-solid.fa-eye, .fa-solid.fa-eye-slash {
+        top: 2.8vw;
+        right: 3.2vw;
+    }
+}
+
+@media (max-width: 350px)
+{
+    .container {
+        width: 80%;
+    }
+
+    .mnsbc-sign-up {
+        padding: 25px 0 24px;
+    }
 }
