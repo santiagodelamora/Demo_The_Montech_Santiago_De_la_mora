@@ -108,7 +108,7 @@ function loadRecords()
         .then(response => response.json())
         .then(data => {
             // Mostrar los registros de la primera tabla
-            const tbody1 = document.getElementById('tabla-registros-cuentas').getElementsByTagName('tbody')[0];
+            const tbody1 = document.getElementById('accounts-records-table').getElementsByTagName('tbody')[0];
             tbody1.innerHTML = '';
     
             data[0].forEach(record => {
@@ -120,15 +120,15 @@ function loadRecords()
                     <td class="td">${record.password}</td>
                     <td class="td">${record.added_at}</td>
                     <td class="td">
-                        <button class="btn-accion" onclick="updateRecords(this, ${record.id}, 'sign up')">Editar</button>
-                        <button class="btn-accion" onclick="deleteRecord(${record.id}, 'sign up')">Eliminar</button>
+                        <button class="btn-action" onclick="updateRecords(this, ${record.id}, 'sign up')">Editar</button>
+                        <button class="btn-action" onclick="deleteRecord(${record.id}, 'sign up')">Eliminar</button>
                     </td>
                 `;
                 tbody1.appendChild(row);
             });
 
             // Mostrar los registros de la segunda tabla
-            const tbody2 = document.getElementById('tabla-registros-inises').getElementsByTagName('tbody')[0];
+            const tbody2 = document.getElementById('login-records-table').getElementsByTagName('tbody')[0];
             tbody2.innerHTML = '';
 
             data[1].forEach(record => {
@@ -139,8 +139,8 @@ function loadRecords()
                     <td class="td">${record.password}</td>
                     <td class="td">${record.added_at}</td>
                     <td class="td">
-                        <button class="btn-accion" onclick="updateRecords(this, ${record.id}, 'sign in')">Editar</button>
-                        <button class="btn-accion" onclick="deleteRecord(${record.id}, 'sign in')">Eliminar</button>
+                        <button class="btn-action" onclick="updateRecords(this, ${record.id}, 'sign in')">Editar</button>
+                        <button class="btn-action" onclick="deleteRecord(${record.id}, 'sign in')">Eliminar</button>
                     </td>
                 `;
                 tbody2.appendChild(row);

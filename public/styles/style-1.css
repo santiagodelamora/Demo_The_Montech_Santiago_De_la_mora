@@ -544,8 +544,8 @@
     }
 
     .username-input, .email-input, .password-input {
-        padding: 1.5vw 19px;
-        font-size: 13px;
+        padding: 1.5vw 3vw;
+        font-size: 3vw;
     }
 
     .password-input {
@@ -635,5 +635,33 @@
 
     .mnsbc-sign-up {
         padding: 25px 0 24px;
+    }
+}
+
+@media (max-height: 630px)
+{
+    .container {
+        min-height: 80vh;
+    }
+
+    .btn-play-audio {
+        top: 5vh;
+        right: 3vw;
+    }
+
+    .main-subcontainer {
+        padding: 20px 0;
+    }
+
+    .li {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 790px) and (max-height: 630px)
+{
+    .container {
+        min-height: auto;
+        height: fit-content;
     }
 }

@@ -12,9 +12,9 @@
     </head>
     <body class="body">
         <h1 class="main-title">Administración de la base de datos (acciones CRUD)</h1><br><br>
-        <div class="contenedor-tabla-registros-cuentas">
+        <div class="accounts-record-table-container">
             <h2 class="table-title">Registro de cuentas</h2>
-            <table id="tabla-registros-cuentas" class="tabla-registros-cuentas" border="1">
+            <table id="accounts-records-table" class="accounts-record-table" border="1">
                 <thead class="thead">
                     <tr class="tr">
                         <th class="th">ID</th>
@@ -30,15 +30,15 @@
                 </tbody>
                 <tfoot class="tfoot">
                     <tr class="tr">
-                        <td class="td" colspan="6"><button class="button" onclick="addRecord('sign up')">Crear nuevo registro</button></td>
+                        <td class="td" colspan="6"><button class="btn-add-record" onclick="addRecord('sign up')">Crear nuevo registro</button></td>
                     </tr>
                 </tfoot>
             </table>
         </div>
         <br>
-        <div class="contenedor-tabla-registros-inises">
+        <div class="login-records-table-container">
             <h2 class="table-title">Registro de inicios de sesión</h2>
-            <table id="tabla-registros-inises" class="table" border="1">
+            <table id="login-records-table" class="table" border="1">
                 <thead class="thead">
                     <tr class="tr">
                         <th class="th">ID</th>
@@ -53,7 +53,7 @@
                 </tbody>
                 <tfoot class="tfoot">
                     <tr class="tr">
-                        <td class="td" colspan="5"><button class="button" onclick="addRecord('sign in')">Crear nuevo registro</button></td>
+                        <td class="td" colspan="5"><button class="btn-add-record" onclick="addRecord('sign in')">Crear nuevo registro</button></td>
                     </tr>
                 </tfoot>
             </table>
